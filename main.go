@@ -6,15 +6,23 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 )
 
+type CuntomClaims struct {
+	Foo string
+	Bar string
+}
+
 type MyCustomClaims struct {
-	Foo string `json:"foo"`
+	CuntomClaims
 	jwt.StandardClaims
 }
 
 func main() {
 	mySigningKey := []byte("AllYourBase")
 	claims := MyCustomClaims{
-		"bar",
+		CuntomClaims{
+			"foo",
+			"bar",
+		},
 		jwt.StandardClaims{
 			ExpiresAt: 15000,
 			Issuer:    "test",
